@@ -1,0 +1,33 @@
+// block settings panels shared by SoftIcon blocks (copied from ../softicon-tools by npm run tools)
+@import "./vendor/softicon-tools/styles/panels";
+
+.almmHelp {
+	margin: 8px 0 0;
+	color: #757575;
+	font-size: 12px;
+}
+
+// name field and button kept close together
+.almmCreate {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+
+	.components-base-control {
+		width: 100%;
+	}
+}
+
+.almmUrl {
+	width: 100%;
+
+	input {
+		width: 100%;
+	}
+}
+
+// the panel preview in the editor is only a picture of the panel
+.almm_preview {
+	pointer-events: none;
+}

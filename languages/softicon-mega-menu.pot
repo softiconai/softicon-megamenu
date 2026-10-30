@@ -1,0 +1,447 @@
+# Copyright (C) 2026 softiconai
+# This file is distributed under the GPLv3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SoftIcon Mega Menu 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/softicon-mega-menu\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-28T02:45:47+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: softicon-mega-menu\n"
+
+#. Plugin Name of the plugin
+#: softicon-mega-menu.php
+msgid "SoftIcon Mega Menu"
+msgstr ""
+
+#. Description of the plugin
+#: softicon-mega-menu.php
+msgid "Add mega menus to the Navigation block in block themes. Design each dropdown panel in the Site Editor with any blocks."
+msgstr ""
+
+#. Author of the plugin
+#: softicon-mega-menu.php
+msgid "softiconai"
+msgstr ""
+
+#. Author URI of the plugin
+#: softicon-mega-menu.php
+msgid "https://profiles.wordpress.org/softiconai/"
+msgstr ""
+
+#. translators: %s: the menu item's label
+#: build/render.php:52
+#, php-format
+msgid "%s submenu"
+msgstr ""
+
+#: includes/admin.php:25
+#: includes/admin.php:99
+msgid "Mega Menus"
+msgstr ""
+
+#: includes/admin.php:29
+msgid "Manage panels"
+msgstr ""
+
+#: includes/admin.php:67
+msgid "You are not allowed to create mega menu panels."
+msgstr ""
+
+#: includes/admin.php:73
+#: build/index.js:2
+msgid "Mega menu"
+msgstr ""
+
+#: includes/admin.php:101
+msgid "Open header editor"
+msgstr ""
+
+#: includes/admin.php:106
+msgid "Mega menus work with block themes, such as Twenty Twenty-Five. Your current theme is a classic theme, which uses Appearance → Menus instead."
+msgstr ""
+
+#: includes/admin.php:110
+msgid "How to add a mega menu"
+msgstr ""
+
+#: includes/admin.php:112
+msgid "Create a panel below and design it with any blocks: columns of links, images, buttons."
+msgstr ""
+
+#: includes/admin.php:113
+msgid "Click \"Open header editor\", select the Navigation block, click its + and add a Mega Menu item."
+msgstr ""
+
+#: includes/admin.php:114
+msgid "Type the item's text, choose the panel in the block settings on the right and save."
+msgstr ""
+
+#: includes/admin.php:118
+msgid "Panels"
+msgstr ""
+
+#: includes/admin.php:123
+msgid "Panel name"
+msgstr ""
+
+#: includes/admin.php:124
+#: build/index.js:2
+msgid "For example: Shop menu"
+msgstr ""
+
+#: includes/admin.php:125
+#: build/index.js:2
+msgid "Create panel"
+msgstr ""
+
+#: includes/admin.php:131
+#: build/index.js:2
+msgid "Panel"
+msgstr ""
+
+#: includes/admin.php:132
+msgid "Slug"
+msgstr ""
+
+#: includes/admin.php:133
+msgid "Actions"
+msgstr ""
+
+#: includes/admin.php:138
+msgid "No panels yet. Create your first one above."
+msgstr ""
+
+#: includes/admin.php:144
+msgid "Edit"
+msgstr ""
+
+#: includes/admin.php:150
+msgid "Panels are template parts of your theme. You can also find them in Appearance → Editor → Patterns → Mega Menu, where they can be renamed or deleted."
+msgstr ""
+
+#: includes/block.php:30
+msgid "Shop"
+msgstr ""
+
+#: includes/block.php:30
+msgid "New arrivals"
+msgstr ""
+
+#: includes/block.php:30
+msgid "Best sellers"
+msgstr ""
+
+#: includes/block.php:30
+msgid "Sale"
+msgstr ""
+
+#: includes/block.php:31
+msgid "Company"
+msgstr ""
+
+#: includes/block.php:31
+msgid "About us"
+msgstr ""
+
+#: includes/block.php:31
+msgid "Careers"
+msgstr ""
+
+#: includes/block.php:31
+msgid "Contact"
+msgstr ""
+
+#: includes/block.php:32
+#: build/index.js:2
+msgid "Help"
+msgstr ""
+
+#: includes/block.php:32
+msgid "Shipping"
+msgstr ""
+
+#: includes/block.php:32
+msgid "Returns"
+msgstr ""
+
+#: includes/block.php:32
+msgid "FAQ"
+msgstr ""
+
+#: includes/block.php:67
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/block.php:68
+msgid "Panels that open from a Mega Menu item in the Navigation block."
+msgstr ""
+
+#: build/index.js:1
+msgid "Reset"
+msgstr ""
+
+#: build/index.js:2
+#, js-format
+msgid "%s color"
+msgstr ""
+
+#: build/index.js:2
+msgid "(opens in a new tab)"
+msgstr ""
+
+#: build/index.js:2
+msgid "General"
+msgstr ""
+
+#: build/index.js:2
+msgid "Style"
+msgstr ""
+
+#: build/index.js:2
+msgid "Hover"
+msgstr ""
+
+#: build/index.js:2
+msgid "Click"
+msgstr ""
+
+#: build/index.js:2
+msgid "Show panel"
+msgstr ""
+
+#: build/index.js:2
+msgid "Go to link"
+msgstr ""
+
+#: build/index.js:2
+msgid "Content"
+msgstr ""
+
+#: build/index.js:2
+msgid "Wide"
+msgstr ""
+
+#: build/index.js:2
+msgid "Full"
+msgstr ""
+
+#: build/index.js:2
+msgid "Custom"
+msgstr ""
+
+#: build/index.js:2
+msgid "Center"
+msgstr ""
+
+#: build/index.js:2
+msgid "Left"
+msgstr ""
+
+#: build/index.js:2
+msgid "Right"
+msgstr ""
+
+#: build/index.js:2
+msgid "Get support"
+msgstr ""
+
+#: build/index.js:2
+msgid "Rate Mega Menu"
+msgstr ""
+
+#: build/index.js:2
+msgid "More plugins"
+msgstr ""
+
+#: build/index.js:2
+msgid "Mega menu panels are template parts, which need a block theme such as Twenty Twenty-Five."
+msgstr ""
+
+#: build/index.js:2
+msgid "Choose a panel"
+msgstr ""
+
+#: build/index.js:2
+msgid "not found"
+msgstr ""
+
+#: build/index.js:2
+msgid "The panel is a template part. Design it in the Site Editor with any blocks: columns, images, buttons, even another menu."
+msgstr ""
+
+#: build/index.js:2
+msgid "Edit this panel in the Site Editor"
+msgstr ""
+
+#: build/index.js:2
+msgid "New panel"
+msgstr ""
+
+#: build/index.js:2
+msgid "Starts with three columns of links you can change."
+msgstr ""
+
+#: build/index.js:2
+msgid "New panel name"
+msgstr ""
+
+#: build/index.js:2
+msgid "The panel could not be created."
+msgstr ""
+
+#: build/index.js:2
+msgid "All panels (Appearance → Mega Menus)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Email:"
+msgstr ""
+
+#: build/index.js:2
+msgid "Link"
+msgstr ""
+
+#: build/index.js:2
+msgid "Menu item link (optional)"
+msgstr ""
+
+#: build/index.js:2
+msgid "With a link the text opens that page and a small arrow opens the panel. Without one the whole item opens the panel."
+msgstr ""
+
+#: build/index.js:2
+msgid "Menu item link"
+msgstr ""
+
+#: build/index.js:2
+msgid "Behavior"
+msgstr ""
+
+#: build/index.js:2
+msgid "Open on"
+msgstr ""
+
+#: build/index.js:2
+msgid "Hover opens the panel when the mouse is over the item. Touch screens and keyboards always open it with a tap or Enter."
+msgstr ""
+
+#: build/index.js:2
+msgid "On phones"
+msgstr ""
+
+#: build/index.js:2
+msgid "Inside the Navigation block's phone menu, show the panel under the item or just go to the link."
+msgstr ""
+
+#: build/index.js:2
+msgid "On phones the panel opens under the item inside the menu."
+msgstr ""
+
+#: build/index.js:2
+msgid "Size and position"
+msgstr ""
+
+#: build/index.js:2
+msgid "Width"
+msgstr ""
+
+#: build/index.js:2
+msgid "Content and Wide follow your theme's layout widths. Full spans the whole screen. The panel never gets wider than the screen."
+msgstr ""
+
+#: build/index.js:2
+msgid "Custom width (px)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Position"
+msgstr ""
+
+#: build/index.js:2
+msgid "Center puts the panel in the middle of the screen. Left and Right line it up with the menu item."
+msgstr ""
+
+#: build/index.js:2
+msgid "Space above (px)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Moves the panel down, for example to the bottom of a tall header."
+msgstr ""
+
+#: build/index.js:2
+msgid "Panel style"
+msgstr ""
+
+#: build/index.js:2
+msgid "Padding (px)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Rounded corners (px)"
+msgstr ""
+
+#: build/index.js:2
+msgid "Shadow"
+msgstr ""
+
+#: build/index.js:2
+msgid "Background"
+msgstr ""
+
+#: build/index.js:2
+msgid "Text"
+msgstr ""
+
+#: build/index.js:2
+msgid "Preview the panel"
+msgstr ""
+
+#: build/index.js:2
+msgid "Choose a panel in the block settings first"
+msgstr ""
+
+#: build/index.js:2
+msgid "Menu item text"
+msgstr ""
+
+#: build/block.json
+msgctxt "block title"
+msgid "Mega Menu"
+msgstr ""
+
+#: build/block.json
+msgctxt "block description"
+msgid "A menu item that opens a large panel. Design the panel in the Site Editor with any blocks."
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "mega menu"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "menu"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "dropdown"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "header"
+msgstr ""

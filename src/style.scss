@@ -1,0 +1,151 @@
+// the menu item sits in the Navigation block's list; the panel hangs under it
+.almm_item {
+	position: relative;
+}
+
+.almm_item .almm_head {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+}
+
+// beats the Navigation block's display: block on .wp-block-navigation-item__content
+.almm_item .almm_toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	text-align: inherit;
+	cursor: pointer;
+}
+
+.almm_arrow {
+	display: inline-flex;
+
+	svg {
+		width: 0.75em;
+		height: 0.75em;
+		transition: transform 0.2s ease;
+	}
+}
+
+.almm_item.is-open .almm_arrow svg {
+	transform: rotate(180deg);
+}
+
+.almm_panel {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 100;
+	box-sizing: border-box;
+	width: var(--almm-width, 1200px);
+	max-width: calc(100vw - 32px);
+	margin-top: var(--almm-gap, 0px);
+	padding: var(--almm-pad, 24px);
+	border-radius: var(--almm-radius, 8px);
+	background: var(--almm-bg, var(--wp--preset--color--base, #fff));
+	color: var(--almm-color, var(--wp--preset--color--contrast, #1e1e1e));
+	// the menu's own text styles stop here
+	font-weight: normal;
+	letter-spacing: normal;
+	line-height: normal;
+	text-align: start;
+	text-transform: none;
+	white-space: normal;
+	// hidden with display, a closed panel that is only invisible still widens the page
+	display: none;
+
+	// keeps the mouse "inside" while it crosses the space above the panel
+	&::before {
+		content: "";
+		position: absolute;
+		right: 0;
+		bottom: 100%;
+		left: 0;
+		height: var(--almm-gap, 0px);
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}
+
+.almm_shadow .almm_panel {
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.almm_item.is-open > .almm_panel,
+// without JavaScript the panel still opens on hover and keyboard focus
+.almm_item:not(.almm_js):hover > .almm_panel,
+.almm_item:not(.almm_js):focus-within > .almm_panel {
+	display: block;
+	animation: almm_in 0.18s ease;
+}
+
+@keyframes almm_in {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.almm_item .almm_panel {
+		animation: none;
+	}
+
+	.almm_arrow svg {
+		transition: none;
+	}
+}
+
+// the Navigation block's phone menu: the panel opens inside the list, under its item
+.wp-block-navigation__responsive-container.is-menu-open {
+	.almm_item {
+		flex-direction: column;
+		align-items: inherit;
+	}
+
+	.almm_panel {
+		position: static;
+		display: none;
+		width: 100% !important;
+		max-width: none !important;
+		left: auto !important;
+		margin: 0;
+		padding: 12px 0 0;
+		border-radius: 0;
+		background: transparent;
+		color: inherit;
+		box-shadow: none;
+		animation: none;
+
+		&::before {
+			content: none;
+		}
+	}
+
+	.almm_item.is-open > .almm_panel {
+		display: block;
+	}
+
+	// "Go to link" on phones: only the link is left
+	.almm_mobile_link {
+		.almm_toggle_arrow,
+		.almm_panel {
+			display: none !important;
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "softicon/mega-menu",
+	"version": "1.0.0",
+	"title": "Mega Menu",
+	"category": "design",
+	"parent": [ "core/navigation" ],
+	"description": "A menu item that opens a large panel. Design the panel in the Site Editor with any blocks.",
+	"keywords": [ "mega menu", "menu", "dropdown", "navigation", "header" ],
+	"textdomain": "softicon-mega-menu",
+	"attributes": {
+		"label": { "type": "string", "default": "" },
+		"url": { "type": "string", "default": "" },
+		"menuSlug": { "type": "string", "default": "" },
+		"openOn": { "type": "string", "default": "hover" },
+		"mobile": { "type": "string", "default": "accordion" },
+		"width": { "type": "string", "default": "wide" },
+		"customWidth": { "type": "number", "default": 800 },
+		"panelAlign": { "type": "string", "default": "center" },
+		"gap": { "type": "number", "default": 0 },
+		"padding": { "type": "number", "default": 24 },
+		"radius": { "type": "number", "default": 8 },
+		"shadow": { "type": "boolean", "default": true },
+		"panelBg": { "type": "string", "default": "" },
+		"panelColor": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
