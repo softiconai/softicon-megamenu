@@ -23,3 +23,9 @@ PROJECT-NOTES.md
 # Local credentials, never commit
 svn.txt
 *.secret
+
+# ElevenLabs API key
+elevenlabs.txt
+
+# Promo and tutorial videos, kept out of the repo and the release zip
+videos/

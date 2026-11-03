@@ -45,6 +45,43 @@ class admin {
             .almm-admin .almm-panels { max-width: 820px; }
             .almm-admin .almm-panels code { font-size: 12px; }
             .almm-admin .almm-panels + .description { margin-top: 12px; }
+            .almm-admin .almm-videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 16px 0 4px; }
+            .almm-admin .almm-video { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid #dcdcde; border-radius: 8px; background: #f6f7f7; color: #1d2327; text-decoration: none; }
+            .almm-admin .almm-video:hover, .almm-admin .almm-video:focus { border-color: #4f46e5; background: #f5f3ff; color: #1d2327; }
+            .almm-admin .almm-video svg { flex: none; width: 36px; height: 36px; }
+            .almm-admin .almm-video strong { display: block; }
+            .almm-admin .almm-video small { color: #646970; }
+            .almm-video-dialog { width: min(960px, 92vw); padding: 0; border: 0; border-radius: 10px; background: #000; overflow: visible; }
+            .almm-video-dialog::backdrop { background: rgba(15, 23, 42, .75); }
+            .almm-video-dialog .almm-video-frame { aspect-ratio: 16 / 9; }
+            .almm-video-dialog iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: 10px; }
+            .almm-video-dialog .almm-video-close { position: absolute; top: -40px; right: 0; padding: 4px 8px; border: 0; background: none; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; }
+        ' );
+
+        // the video plays from youtube-nocookie.com only after a click; without JavaScript the card opens YouTube
+        wp_register_script( 'almm-admin', false, array(), ALMM_PLUGIN_VERSION, true );
+        wp_enqueue_script( 'almm-admin' );
+        wp_add_inline_script( 'almm-admin', '
+            ( function () {
+                var dialog = document.querySelector( ".almm-video-dialog" );
+                if ( ! dialog || ! dialog.showModal ) { return; }
+                var frame = dialog.querySelector( ".almm-video-frame" );
+                document.querySelectorAll( ".almm-video[data-video]" ).forEach( function ( link ) {
+                    link.addEventListener( "click", function ( event ) {
+                        event.preventDefault();
+                        var iframe = document.createElement( "iframe" );
+                        iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent( link.dataset.video ) + "?autoplay=1&rel=0";
+                        iframe.title = link.dataset.title;
+                        iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+                        iframe.allowFullscreen = true;
+                        frame.replaceChildren( iframe );
+                        dialog.showModal();
+                    } );
+                } );
+                dialog.querySelector( ".almm-video-close" ).addEventListener( "click", function () { dialog.close(); } );
+                dialog.addEventListener( "click", function ( event ) { if ( event.target === dialog ) { dialog.close(); } } );
+                dialog.addEventListener( "close", function () { frame.replaceChildren(); } );
+            } )();
         ' );
     }
 
@@ -60,6 +97,24 @@ class admin {
             }
         }
         return block::edit_url( $headers[0]->id );
+    }
+
+    // video guides on the softicon YouTube channel
+    private function videos() {
+        return array(
+            array(
+                'id'     => 'X_APEz4RrdM',
+                'title'  => __( 'Step-by-step guide', 'softicon-mega-menu' ),
+                'text'   => __( 'Build a mega menu from start to finish', 'softicon-mega-menu' ),
+                'length' => '2:28',
+            ),
+            array(
+                'id'     => 'dujCbVTPBlQ',
+                'title'  => __( 'Quick tour', 'softicon-mega-menu' ),
+                'text'   => __( 'What the plugin can do', 'softicon-mega-menu' ),
+                'length' => '0:32',
+            ),
+        );
     }
 
     public function create() {
@@ -113,7 +168,24 @@ class admin {
                         <li><?php esc_html_e( 'Click "Open header editor", select the Navigation block, click its + and add a Mega Menu item.', 'softicon-mega-menu' ); ?></li>
                         <li><?php esc_html_e( 'Type the item\'s text, choose the panel in the block settings on the right and save.', 'softicon-mega-menu' ); ?></li>
                     </ol>
+
+                    <div class="almm-videos">
+                        <?php foreach ( $this->videos() as $video ) : ?>
+                            <a class="almm-video" href="<?php echo esc_url( 'https://www.youtube.com/watch?v=' . $video['id'] ); ?>" target="_blank" rel="noopener noreferrer" data-video="<?php echo esc_attr( $video['id'] ); ?>" data-title="<?php echo esc_attr( $video['title'] ); ?>">
+                                <svg viewBox="0 0 36 36" aria-hidden="true" focusable="false"><circle cx="18" cy="18" r="18" fill="#4f46e5"/><path d="M14.5 11.5v13l10-6.5z" fill="#fff"/></svg>
+                                <span>
+                                    <strong><?php echo esc_html( $video['title'] ); ?></strong>
+                                    <small><?php echo esc_html( $video['text'] . ' · ' . $video['length'] ); ?></small>
+                                </span>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
+
+                <dialog class="almm-video-dialog" aria-label="<?php esc_attr_e( 'Video guide', 'softicon-mega-menu' ); ?>">
+                    <button type="button" class="almm-video-close" aria-label="<?php esc_attr_e( 'Close video', 'softicon-mega-menu' ); ?>">&times;</button>
+                    <div class="almm-video-frame"></div>
+                </dialog>
 
                 <h2><?php esc_html_e( 'Panels', 'softicon-mega-menu' ); ?></h2>
 

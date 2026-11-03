@@ -4,7 +4,7 @@ Tags: mega menu, menu, navigation, dropdown menu, block theme
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,6 +28,18 @@ Already have a menu? Select a link in it, click the first icon in the toolbar an
 
 Panels are template parts in their own **Mega Menu** area, so you can reuse one panel in several menus.
 
+= Video guides =
+
+How to create a mega menu, step by step (2:28):
+
+https://www.youtube.com/watch?v=X_APEz4RrdM
+
+A quick tour (0:32):
+
+https://www.youtube.com/watch?v=dujCbVTPBlQ
+
+You can also watch them from **Appearance → Mega Menus**.
+
 = Features =
 
 * Mega Menu item for the Navigation block
@@ -45,10 +57,15 @@ Panels are template parts in their own **Mega Menu** area, so you can reuse one 
 * Preview the panel in the editor
 * Works without JavaScript too: the panel opens on hover and keyboard focus
 * Small script with no dependencies, about 2 KB
+* Video guides on the Appearance → Mega Menus page
 
 = Source code =
 
 The JavaScript and CSS in the `build` folder are compiled from the human-readable source in the `src` folder, which is included in the plugin. To build it yourself, run `npm install` and then `npm run build` in the plugin folder. The build uses [@wordpress/scripts](https://www.npmjs.com/package/@wordpress/scripts).
+
+= External services =
+
+The Appearance → Mega Menus page has two video guides hosted on YouTube. Nothing is loaded from YouTube until you click a video. Then the video plays from youtube-nocookie.com, which receives your IP address and browser details like any website you visit. Visitors of your site never load anything from YouTube because of this plugin. YouTube [Terms of Service](https://www.youtube.com/t/terms) and Google [Privacy Policy](https://policies.google.com/privacy).
 
 = Libraries =
 
@@ -98,6 +115,11 @@ Ask in the [support forum](https://wordpress.org/support/plugin/softicon-mega-me
 4. The panel inside the phone menu
 
 == Changelog ==
+
+= 1.1.0 =
+* New: video guides on the Appearance → Mega Menus page, a step-by-step guide and a quick tour. A video loads from YouTube only when you click it.
+* New: "Video guide" card in the Help panel of the block settings.
+* Readme: Video guides and External services sections.
 
 = 1.0.0 =
 * First release.
