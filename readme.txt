@@ -1,10 +1,10 @@
 === SoftIcon Mega Menu ===
 Contributors: softiconai
-Tags: mega menu, menu, navigation, dropdown menu, block theme
+Tags: mega menu, menu, navigation, block, block theme
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,6 +115,11 @@ Ask in the [support forum](https://wordpress.org/support/plugin/softicon-mega-me
 4. The panel inside the phone menu
 
 == Changelog ==
+
+= 1.1.1 =
+* Changed: "Create panel" on the Appearance → Mega Menus page no longer redirects on the server. The page creates the panel and opens it in the Site Editor, or shows a link to it when JavaScript is off.
+* Changed: the Mega Menus page script is now a file (includes/admin.js) instead of inline code.
+* Readme: added the "block" tag.
 
 = 1.1.0 =
 * New: video guides on the Appearance → Mega Menus page, a step-by-step guide and a quick tour. A video loads from YouTube only when you click it.

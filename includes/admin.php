@@ -9,10 +9,12 @@ class admin {
 
     private $hook = '';
 
+    // the panel made by the last form post: array( title, edit url )
+    private $created = array();
+
     public function __construct()
     {
         add_action('admin_menu', array( $this, 'menu' ));
-        add_action('admin_post_almm_create_panel', array( $this, 'create' ));
         add_action('admin_enqueue_scripts', array( $this, 'styles' ));
         add_filter('plugin_action_links_' . plugin_basename( ALMM_PLUGIN_PATH . 'softicon-mega-menu.php' ), array( $this, 'action_links' ));
     }
@@ -23,6 +25,9 @@ class admin {
 
     public function menu() {
         $this->hook = add_theme_page( __( 'Mega Menus', 'softicon-mega-menu' ), __( 'Mega Menus', 'softicon-mega-menu' ), 'edit_theme_options', self::SLUG, array( $this, 'render' ) );
+        if ( $this->hook ) {
+            add_action( 'load-' . $this->hook, array( $this, 'create' ) );
+        }
     }
 
     public function action_links( $links ) {
@@ -58,31 +63,8 @@ class admin {
             .almm-video-dialog .almm-video-close { position: absolute; top: -40px; right: 0; padding: 4px 8px; border: 0; background: none; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; }
         ' );
 
-        // the video plays from youtube-nocookie.com only after a click; without JavaScript the card opens YouTube
-        wp_register_script( 'almm-admin', false, array(), ALMM_PLUGIN_VERSION, true );
-        wp_enqueue_script( 'almm-admin' );
-        wp_add_inline_script( 'almm-admin', '
-            ( function () {
-                var dialog = document.querySelector( ".almm-video-dialog" );
-                if ( ! dialog || ! dialog.showModal ) { return; }
-                var frame = dialog.querySelector( ".almm-video-frame" );
-                document.querySelectorAll( ".almm-video[data-video]" ).forEach( function ( link ) {
-                    link.addEventListener( "click", function ( event ) {
-                        event.preventDefault();
-                        var iframe = document.createElement( "iframe" );
-                        iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent( link.dataset.video ) + "?autoplay=1&rel=0";
-                        iframe.title = link.dataset.title;
-                        iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
-                        iframe.allowFullscreen = true;
-                        frame.replaceChildren( iframe );
-                        dialog.showModal();
-                    } );
-                } );
-                dialog.querySelector( ".almm-video-close" ).addEventListener( "click", function () { dialog.close(); } );
-                dialog.addEventListener( "click", function ( event ) { if ( event.target === dialog ) { dialog.close(); } } );
-                dialog.addEventListener( "close", function () { frame.replaceChildren(); } );
-            } )();
-        ' );
+        // video popup (youtube-nocookie.com, only after a click) and opening a new panel in the Site Editor
+        wp_enqueue_script( 'almm-admin', plugins_url( 'admin.js', __FILE__ ), array(), ALMM_PLUGIN_VERSION, true );
     }
 
     // the theme's header template part, where the Navigation block usually lives; themes with several headers name the main one "header"
@@ -117,13 +99,17 @@ class admin {
         );
     }
 
+    // the "Create panel" form posts back to this page; the new panel then opens in the Site Editor (see admin.js)
     public function create() {
+        if ( ! isset( $_POST['almm_name'] ) ) {
+            return;
+        }
         if ( ! current_user_can( 'edit_theme_options' ) ) {
             wp_die( esc_html__( 'You are not allowed to create mega menu panels.', 'softicon-mega-menu' ) );
         }
         check_admin_referer( 'almm_create_panel' );
 
-        $title = isset( $_POST['almm_name'] ) ? sanitize_text_field( wp_unslash( $_POST['almm_name'] ) ) : '';
+        $title = sanitize_text_field( wp_unslash( $_POST['almm_name'] ) );
         if ( '' === $title ) {
             $title = __( 'Mega menu', 'softicon-mega-menu' );
         }
@@ -141,9 +127,7 @@ class admin {
         wp_set_object_terms( $id, get_stylesheet(), 'wp_theme' );
         wp_set_object_terms( $id, 'menu', 'wp_template_part_area' );
 
-        // straight to designing it
-        wp_safe_redirect( block::edit_url( get_stylesheet() . '//' . get_post_field( 'post_name', $id ) ) );
-        exit;
+        $this->created = array( $title, block::edit_url( get_stylesheet() . '//' . get_post_field( 'post_name', $id ) ) );
     }
 
     public function render() {
@@ -156,6 +140,16 @@ class admin {
                 <a href="<?php echo esc_url( $this->header_url() ); ?>" class="page-title-action"><?php esc_html_e( 'Open header editor', 'softicon-mega-menu' ); ?></a>
             <?php endif; ?>
             <hr class="wp-header-end">
+
+            <?php if ( $this->created ) : ?>
+                <div class="notice notice-success"><p>
+                    <?php
+                    /* translators: %s: the new panel's name */
+                    echo esc_html( sprintf( __( 'Panel "%s" created.', 'softicon-mega-menu' ), $this->created[0] ) );
+                    ?>
+                    <a class="almm-open" href="<?php echo esc_url( $this->created[1] ); ?>"><?php esc_html_e( 'Design it in the Site Editor', 'softicon-mega-menu' ); ?></a>
+                </p></div>
+            <?php endif; ?>
 
             <?php if ( ! $block_theme ) : ?>
                 <div class="notice notice-warning inline"><p><?php esc_html_e( 'Mega menus work with block themes, such as Twenty Twenty-Five. Your current theme is a classic theme, which uses Appearance → Menus instead.', 'softicon-mega-menu' ); ?></p></div>
@@ -189,8 +183,7 @@ class admin {
 
                 <h2><?php esc_html_e( 'Panels', 'softicon-mega-menu' ); ?></h2>
 
-                <form class="almm-create" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-                    <input type="hidden" name="action" value="almm_create_panel">
+                <form class="almm-create" method="post" action="<?php echo esc_url( self::url() ); ?>">
                     <?php wp_nonce_field( 'almm_create_panel' ); ?>
                     <label class="screen-reader-text" for="almm-name"><?php esc_html_e( 'Panel name', 'softicon-mega-menu' ); ?></label>
                     <input type="text" id="almm-name" name="almm_name" placeholder="<?php esc_attr_e( 'For example: Shop menu', 'softicon-mega-menu' ); ?>">

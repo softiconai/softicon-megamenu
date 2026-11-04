@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: SoftIcon Mega Menu 1.1.0\n"
+"Project-Id-Version: SoftIcon Mega Menu 1.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/softicon-mega-menu\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-03T14:20:46+00:00\n"
+"POT-Creation-Date: 2026-11-04T01:48:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: softicon-mega-menu\n"
@@ -40,113 +40,123 @@ msgstr ""
 msgid "%s submenu"
 msgstr ""
 
-#: includes/admin.php:25
-#: includes/admin.php:154
+#: includes/admin.php:27
+#: includes/admin.php:138
 msgid "Mega Menus"
 msgstr ""
 
-#: includes/admin.php:29
+#: includes/admin.php:34
 msgid "Manage panels"
 msgstr ""
 
-#: includes/admin.php:107
+#: includes/admin.php:89
 msgid "Step-by-step guide"
 msgstr ""
 
-#: includes/admin.php:108
+#: includes/admin.php:90
 msgid "Build a mega menu from start to finish"
 msgstr ""
 
-#: includes/admin.php:113
+#: includes/admin.php:95
 msgid "Quick tour"
 msgstr ""
 
-#: includes/admin.php:114
+#: includes/admin.php:96
 msgid "What the plugin can do"
 msgstr ""
 
-#: includes/admin.php:122
+#: includes/admin.php:108
 msgid "You are not allowed to create mega menu panels."
 msgstr ""
 
-#: includes/admin.php:128
+#: includes/admin.php:114
 #: build/index.js:2
 msgid "Mega menu"
 msgstr ""
 
-#: includes/admin.php:156
+#: includes/admin.php:140
 msgid "Open header editor"
 msgstr ""
 
-#: includes/admin.php:161
+#. translators: %s: the new panel's name
+#: includes/admin.php:148
+#, php-format
+msgid "Panel \"%s\" created."
+msgstr ""
+
+#: includes/admin.php:150
+msgid "Design it in the Site Editor"
+msgstr ""
+
+#: includes/admin.php:155
 msgid "Mega menus work with block themes, such as Twenty Twenty-Five. Your current theme is a classic theme, which uses Appearance → Menus instead."
 msgstr ""
 
-#: includes/admin.php:165
+#: includes/admin.php:159
 msgid "How to add a mega menu"
 msgstr ""
 
-#: includes/admin.php:167
+#: includes/admin.php:161
 msgid "Create a panel below and design it with any blocks: columns of links, images, buttons."
 msgstr ""
 
-#: includes/admin.php:168
+#: includes/admin.php:162
 msgid "Click \"Open header editor\", select the Navigation block, click its + and add a Mega Menu item."
 msgstr ""
 
-#: includes/admin.php:169
+#: includes/admin.php:163
 msgid "Type the item's text, choose the panel in the block settings on the right and save."
 msgstr ""
 
-#: includes/admin.php:185
+#: includes/admin.php:179
 #: build/index.js:2
 msgid "Video guide"
 msgstr ""
 
-#: includes/admin.php:186
+#: includes/admin.php:180
 msgid "Close video"
 msgstr ""
 
-#: includes/admin.php:190
+#: includes/admin.php:184
 msgid "Panels"
 msgstr ""
 
-#: includes/admin.php:195
+#: includes/admin.php:188
 msgid "Panel name"
 msgstr ""
 
-#: includes/admin.php:196
+#: includes/admin.php:189
 #: build/index.js:2
 msgid "For example: Shop menu"
 msgstr ""
 
-#: includes/admin.php:197
+#: includes/admin.php:190
 #: build/index.js:2
 msgid "Create panel"
 msgstr ""
 
-#: includes/admin.php:203
+#: includes/admin.php:196
 #: build/index.js:2
 msgid "Panel"
 msgstr ""
 
-#: includes/admin.php:204
+#: includes/admin.php:197
 msgid "Slug"
 msgstr ""
 
-#: includes/admin.php:205
+#: includes/admin.php:198
 msgid "Actions"
 msgstr ""
 
-#: includes/admin.php:210
+#: includes/admin.php:203
 msgid "No panels yet. Create your first one above."
 msgstr ""
 
-#: includes/admin.php:216
+#: includes/admin.php:209
 msgid "Edit"
 msgstr ""
 
-#: includes/admin.php:222
+#: includes/admin.php:215
 msgid "Panels are template parts of your theme. You can also find them in Appearance → Editor → Patterns → Mega Menu, where they can be renamed or deleted."
 msgstr ""
 
