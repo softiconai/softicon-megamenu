@@ -30,9 +30,12 @@ export const alignOptions = [
 	{ label: __('Right', 'softicon-mega-menu'), value: 'right', icon: icons.right }
 ];
 
+// the step-by-step video guide on YouTube (2:16)
+export const guideUrl = 'https://www.youtube.com/watch?v=XEJpAu02Gew';
+
 // the cards in the Help panel
 export const helpCards = [
-	{ href: 'https://www.youtube.com/watch?v=X_APEz4RrdM', label: __('Video guide', 'softicon-mega-menu'), icon: shared.video },
+	{ href: guideUrl, label: __('Video guide', 'softicon-mega-menu'), icon: shared.video },
 	{ href: 'https://wordpress.org/support/plugin/softicon-mega-menu/', label: __('Get support', 'softicon-mega-menu'), icon: shared.support },
 	{ href: 'https://wordpress.org/support/plugin/softicon-mega-menu/reviews/#new-post', label: __('Rate Mega Menu', 'softicon-mega-menu'), icon: shared.star },
 	{ href: 'https://wordpress.org/plugins/author/softiconai/', label: __('More plugins', 'softicon-mega-menu'), icon: shared.plugins }

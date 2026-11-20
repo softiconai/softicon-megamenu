@@ -8,7 +8,7 @@ import { Button, ExternalLink, Notice, SelectControl, Spinner, TextControl } fro
 import { addQueryArgs, cleanForSlug } from '@wordpress/url';
 import { decodeEntities } from '@wordpress/html-entities';
 import { FieldHead, HelpCards, Panel, Tiles } from '../../../../vendor/softicon-tools/components/Panels';
-import { helpCards, mobileOptions, openOptions } from '../../../../utils/options';
+import { guideUrl, helpCards, mobileOptions, openOptions } from '../../../../utils/options';
 import { uniqueSlug } from '../../../../utils/functions';
 
 const PARTS = ['postType', 'wp_template_part', { per_page: -1 }];
@@ -78,6 +78,7 @@ const PanelPicker = ({ menuSlug, setAttributes }) => {
 			<FieldHead label={__('Panel', 'softicon-mega-menu')} tip={__('The panel is a template part. Design it in the Site Editor with any blocks: columns, images, buttons, even another menu.', 'softicon-mega-menu')} />
 			<SelectControl label={__('Panel', 'softicon-mega-menu')} hideLabelFromVision value={menuSlug} options={options} onChange={val => setAttributes({ menuSlug: val })} __nextHasNoMarginBottom __next40pxDefaultSize />
 			{editUrl && <p className='almmHelp'><ExternalLink href={editUrl}>{__('Edit this panel in the Site Editor', 'softicon-mega-menu')}</ExternalLink></p>}
+			{!menuSlug && <p className='almmHelp'>{__('New here?', 'softicon-mega-menu')} <ExternalLink href={guideUrl}>{__('Watch the 2-minute guide', 'softicon-mega-menu')}</ExternalLink></p>}
 		</div>
 
 		<div className='almmCreate'>

@@ -4,7 +4,7 @@ Tags: mega menu, menu, navigation, block, block theme
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,6 +15,8 @@ Add mega menus to the Navigation block in block themes. Design each dropdown pan
 **SoftIcon Mega Menu** adds a **Mega Menu** item to the Navigation block of block themes like Twenty Twenty-Five. Each item opens a large panel that you design in the Site Editor with the blocks you already know: columns of links, images, buttons, even a product grid.
 
 Classic mega menu plugins work with the old Appearance → Menus screen, which block themes do not use. This plugin is made for the Navigation block.
+
+https://www.youtube.com/watch?v=wESHej61hmw
 
 = How it works =
 
@@ -31,15 +33,11 @@ Panels are template parts in their own **Mega Menu** area, so you can reuse one 
 
 = Video guides =
 
-How to create a mega menu, step by step (2:28):
+How to create a mega menu, step by step (2:16):
 
-https://www.youtube.com/watch?v=X_APEz4RrdM
+https://www.youtube.com/watch?v=XEJpAu02Gew
 
-A quick tour (0:32):
-
-https://www.youtube.com/watch?v=dujCbVTPBlQ
-
-The Help panel in the block settings links to the step-by-step guide.
+The Help panel in the block settings links to this guide, and so does the Panel section until you choose a panel. The quick tour (0:32) is at the top of this page.
 
 = Features =
 
@@ -130,6 +128,10 @@ Ask in the [support forum](https://wordpress.org/support/plugin/softicon-mega-me
 5. Ready-made designs in the Site Editor: Patterns → Mega Menu, and Design in a panel's settings
 
 == Changelog ==
+
+= 1.3.1 =
+* Changed: the video guide is new for 1.3.0, with ready-made designs and without the old Mega Menus page.
+* New: a "Watch the 2-minute guide" link in the Panel section until you choose a panel.
 
 = 1.3.0 =
 * Removed: the Appearance → Mega Menus page, so the plugin is a pure block that can be listed in the Block Directory and installed from the editor. Everything it did is in the block settings: pick a design, create a panel, choose it and open it in the Site Editor. Panels and menus you made are not changed.

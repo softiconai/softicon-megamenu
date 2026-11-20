@@ -4,6 +4,8 @@ Mega menus for the Navigation block in block themes. Each menu item opens a pane
 
 Requires WordPress 6.5+ · PHP 7.1+ · a block theme · GPLv3
 
+**Videos:** [step-by-step guide (2:16)](https://www.youtube.com/watch?v=XEJpAu02Gew) · [quick tour (0:32)](https://www.youtube.com/watch?v=wESHej61hmw) · [WordPress.org](https://wordpress.org/plugins/softicon-mega-menu/)
+
 ## Features
 
 - Mega Menu item for the Navigation block; panels are template parts in a "Mega Menu" area
