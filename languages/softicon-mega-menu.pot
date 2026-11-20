@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: SoftIcon Mega Menu 1.1.1\n"
+"Project-Id-Version: SoftIcon Mega Menu 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/softicon-mega-menu\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T01:48:30+00:00\n"
+"POT-Creation-Date: 2026-11-20T01:24:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: softicon-mega-menu\n"
@@ -41,7 +41,7 @@ msgid "%s submenu"
 msgstr ""
 
 #: includes/admin.php:27
-#: includes/admin.php:138
+#: includes/admin.php:195
 msgid "Mega Menus"
 msgstr ""
 
@@ -49,172 +49,360 @@ msgstr ""
 msgid "Manage panels"
 msgstr ""
 
-#: includes/admin.php:89
+#: includes/admin.php:99
 msgid "Step-by-step guide"
 msgstr ""
 
-#: includes/admin.php:90
+#: includes/admin.php:100
 msgid "Build a mega menu from start to finish"
 msgstr ""
 
-#: includes/admin.php:95
+#: includes/admin.php:105
 msgid "Quick tour"
 msgstr ""
 
-#: includes/admin.php:96
+#: includes/admin.php:106
 msgid "What the plugin can do"
 msgstr ""
 
-#: includes/admin.php:108
+#: includes/admin.php:164
 msgid "You are not allowed to create mega menu panels."
 msgstr ""
 
-#: includes/admin.php:114
+#: includes/admin.php:171
 #: build/index.js:2
 msgid "Mega menu"
 msgstr ""
 
-#: includes/admin.php:140
+#: includes/admin.php:197
 msgid "Open header editor"
 msgstr ""
 
 #. translators: %s: the new panel's name
-#: includes/admin.php:148
+#: includes/admin.php:205
 #, php-format
 msgid "Panel \"%s\" created."
 msgstr ""
 
-#: includes/admin.php:150
+#: includes/admin.php:207
 msgid "Design it in the Site Editor"
 msgstr ""
 
-#: includes/admin.php:155
+#: includes/admin.php:212
 msgid "Mega menus work with block themes, such as Twenty Twenty-Five. Your current theme is a classic theme, which uses Appearance → Menus instead."
 msgstr ""
 
-#: includes/admin.php:159
+#: includes/admin.php:216
 msgid "How to add a mega menu"
 msgstr ""
 
-#: includes/admin.php:161
-msgid "Create a panel below and design it with any blocks: columns of links, images, buttons."
+#: includes/admin.php:218
+msgid "Pick a design below and create a panel. Change its text, links and images, or design it with any blocks."
 msgstr ""
 
-#: includes/admin.php:162
-msgid "Click \"Open header editor\", select the Navigation block, click its + and add a Mega Menu item."
+#: includes/admin.php:219
+msgid "Click \"Open header editor\", select the Navigation block, click its +, then \"Add block\", and choose Mega Menu."
 msgstr ""
 
-#: includes/admin.php:163
+#: includes/admin.php:220
 msgid "Type the item's text, choose the panel in the block settings on the right and save."
 msgstr ""
 
-#: includes/admin.php:179
+#: includes/admin.php:236
 #: build/index.js:2
 msgid "Video guide"
 msgstr ""
 
-#: includes/admin.php:180
+#: includes/admin.php:237
 msgid "Close video"
 msgstr ""
 
-#: includes/admin.php:184
+#: includes/admin.php:241
 msgid "Panels"
 msgstr ""
 
-#: includes/admin.php:188
+#: includes/admin.php:246
+#: build/index.js:2
+msgid "Design"
+msgstr ""
+
+#: includes/admin.php:257
 msgid "Panel name"
 msgstr ""
 
-#: includes/admin.php:189
+#: includes/admin.php:258
 #: build/index.js:2
 msgid "For example: Shop menu"
 msgstr ""
 
-#: includes/admin.php:190
+#: includes/admin.php:259
 #: build/index.js:2
 msgid "Create panel"
 msgstr ""
 
-#: includes/admin.php:196
+#: includes/admin.php:266
 #: build/index.js:2
 msgid "Panel"
 msgstr ""
 
-#: includes/admin.php:197
+#: includes/admin.php:267
 msgid "Slug"
 msgstr ""
 
-#: includes/admin.php:198
+#: includes/admin.php:268
 msgid "Actions"
 msgstr ""
 
-#: includes/admin.php:203
+#: includes/admin.php:273
 msgid "No panels yet. Create your first one above."
 msgstr ""
 
-#: includes/admin.php:209
+#: includes/admin.php:279
 msgid "Edit"
 msgstr ""
 
-#: includes/admin.php:215
+#: includes/admin.php:285
 msgid "Panels are template parts of your theme. You can also find them in Appearance → Editor → Patterns → Mega Menu, where they can be renamed or deleted."
 msgstr ""
 
-#: includes/block.php:30
+#: includes/block.php:70
+#: includes/patterns.php:16
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/block.php:71
+msgid "Panels that open from a Mega Menu item in the Navigation block."
+msgstr ""
+
+#: includes/patterns.php:34
+msgid "Links in columns"
+msgstr ""
+
+#: includes/patterns.php:34
+msgid "Three columns of links with small headings."
+msgstr ""
+
+#: includes/patterns.php:35
+#: includes/patterns.php:47
+#: includes/patterns.php:117
 msgid "Shop"
 msgstr ""
 
-#: includes/block.php:30
+#: includes/patterns.php:35
+msgid "Columns of links and a featured product with a button."
+msgstr ""
+
+#: includes/patterns.php:36
+msgid "Services"
+msgstr ""
+
+#: includes/patterns.php:36
+msgid "Services with a short line each and a call to action box."
+msgstr ""
+
+#: includes/patterns.php:37
+msgid "Latest posts"
+msgstr ""
+
+#: includes/patterns.php:37
+msgid "Your three newest posts with their featured images."
+msgstr ""
+
+#: includes/patterns.php:38
+msgid "Promo"
+msgstr ""
+
+#: includes/patterns.php:38
+msgid "A big heading, two buttons and an image."
+msgstr ""
+
+#: includes/patterns.php:47
+#: includes/patterns.php:117
 msgid "New arrivals"
 msgstr ""
 
-#: includes/block.php:30
+#: includes/patterns.php:47
+#: includes/patterns.php:117
 msgid "Best sellers"
 msgstr ""
 
-#: includes/block.php:30
+#: includes/patterns.php:47
+msgid "Gift cards"
+msgstr ""
+
+#: includes/patterns.php:47
+#: includes/patterns.php:117
 msgid "Sale"
 msgstr ""
 
-#: includes/block.php:31
-msgid "Company"
+#: includes/patterns.php:48
+msgid "Collections"
 msgstr ""
 
-#: includes/block.php:31
-msgid "About us"
+#: includes/patterns.php:48
+msgid "Spring"
 msgstr ""
 
-#: includes/block.php:31
-msgid "Careers"
+#: includes/patterns.php:48
+msgid "Home and living"
 msgstr ""
 
-#: includes/block.php:31
-msgid "Contact"
+#: includes/patterns.php:48
+msgid "Outdoor"
 msgstr ""
 
-#: includes/block.php:32
+#: includes/patterns.php:48
+msgid "Limited edition"
+msgstr ""
+
+#: includes/patterns.php:49
+#: includes/patterns.php:119
 #: build/index.js:2
 msgid "Help"
 msgstr ""
 
-#: includes/block.php:32
+#: includes/patterns.php:49
+#: includes/patterns.php:119
 msgid "Shipping"
 msgstr ""
 
-#: includes/block.php:32
+#: includes/patterns.php:49
+#: includes/patterns.php:119
 msgid "Returns"
 msgstr ""
 
-#: includes/block.php:32
+#: includes/patterns.php:49
+msgid "Size guide"
+msgstr ""
+
+#: includes/patterns.php:49
+msgid "Contact us"
+msgstr ""
+
+#: includes/patterns.php:52
+msgid "White flowers with green leaves"
+msgstr ""
+
+#: includes/patterns.php:53
+msgid "The spring collection"
+msgstr ""
+
+#: includes/patterns.php:54
+msgid "Fresh designs, just in."
+msgstr ""
+
+#: includes/patterns.php:55
+#: includes/patterns.php:107
+msgid "Shop now"
+msgstr ""
+
+#: includes/patterns.php:64
+msgid "Web design"
+msgstr ""
+
+#: includes/patterns.php:64
+msgid "Websites that look good on every screen."
+msgstr ""
+
+#: includes/patterns.php:65
+msgid "Branding"
+msgstr ""
+
+#: includes/patterns.php:65
+msgid "Logos, colors and type that fit you."
+msgstr ""
+
+#: includes/patterns.php:66
+#: build/index.js:2
+msgid "Content"
+msgstr ""
+
+#: includes/patterns.php:66
+msgid "Words and pictures that tell your story."
+msgstr ""
+
+#: includes/patterns.php:67
+msgid "Marketing"
+msgstr ""
+
+#: includes/patterns.php:67
+msgid "Get found by the right people."
+msgstr ""
+
+#: includes/patterns.php:68
+msgid "Support"
+msgstr ""
+
+#: includes/patterns.php:68
+msgid "Updates, backups and quick fixes."
+msgstr ""
+
+#: includes/patterns.php:69
+msgid "Consulting"
+msgstr ""
+
+#: includes/patterns.php:69
+msgid "A clear plan before you build."
+msgstr ""
+
+#: includes/patterns.php:81
+msgid "Not sure where to start?"
+msgstr ""
+
+#: includes/patterns.php:82
+msgid "Tell us about your project in a free 20-minute call."
+msgstr ""
+
+#: includes/patterns.php:83
+msgid "Book a call"
+msgstr ""
+
+#: includes/patterns.php:90
+msgid "From the blog"
+msgstr ""
+
+#: includes/patterns.php:97
+msgid "All posts →"
+msgstr ""
+
+#: includes/patterns.php:104
+msgid "New season"
+msgstr ""
+
+#: includes/patterns.php:105
+msgid "Fresh picks for brighter days"
+msgstr ""
+
+#: includes/patterns.php:106
+msgid "Hand-picked favourites, new every week. Find something you love."
+msgstr ""
+
+#: includes/patterns.php:107
+msgid "Learn more"
+msgstr ""
+
+#: includes/patterns.php:111
+msgid "A yellow buttercup flower"
+msgstr ""
+
+#: includes/patterns.php:118
+msgid "Company"
+msgstr ""
+
+#: includes/patterns.php:118
+msgid "About us"
+msgstr ""
+
+#: includes/patterns.php:118
+msgid "Careers"
+msgstr ""
+
+#: includes/patterns.php:118
+msgid "Contact"
+msgstr ""
+
+#: includes/patterns.php:119
 msgid "FAQ"
-msgstr ""
-
-#: includes/block.php:67
-msgid "Mega Menu"
-msgstr ""
-
-#: includes/block.php:68
-msgid "Panels that open from a Mega Menu item in the Navigation block."
 msgstr ""
 
 #: build/index.js:1
@@ -252,10 +440,6 @@ msgstr ""
 
 #: build/index.js:2
 msgid "Go to link"
-msgstr ""
-
-#: build/index.js:2
-msgid "Content"
 msgstr ""
 
 #: build/index.js:2
@@ -319,7 +503,7 @@ msgid "New panel"
 msgstr ""
 
 #: build/index.js:2
-msgid "Starts with three columns of links you can change."
+msgid "Starts with a ready-made design. Change its text, links and images in the Site Editor."
 msgstr ""
 
 #: build/index.js:2

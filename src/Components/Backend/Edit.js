@@ -60,7 +60,7 @@ const Edit = (props) => {
 			</span>
 
 			{showPanel && <div ref={panel} className='almm_panel almm_preview'>
-				<ServerSideRender block='core/template-part' attributes={{ slug: menuSlug, theme }} />
+				<ServerSideRender block='core/template-part' attributes={{ slug: menuSlug, theme }} urlQueryArgs={{ almm_preview: 1 }} />
 			</div>}
 		</div>
 	</>;

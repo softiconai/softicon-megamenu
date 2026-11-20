@@ -4,7 +4,7 @@ Tags: mega menu, menu, navigation, block, block theme
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,11 +18,11 @@ Classic mega menu plugins work with the old Appearance → Menus screen, which b
 
 = How it works =
 
-1. Go to **Appearance → Mega Menus** and click **Create panel**. A new panel starts with three columns of links. Design it with any blocks.
-2. Click **Open header editor**, select the Navigation block, click its **+** and add a **Mega Menu** item.
+1. Go to **Appearance → Mega Menus**, pick a design and click **Create panel**. Change its text, links and images, or design it with any blocks.
+2. Click **Open header editor**, select the Navigation block, click its **+**, then **Add block**, and choose **Mega Menu**.
 3. Type the item's text, choose the panel in the block settings and save.
 
-You can also create a panel right from the block settings.
+You can also create a panel right from the block settings, or add a design to any panel from the Site Editor: Inserter → Patterns → **Mega Menu**.
 
 Already have a menu? Select a link in it, click the first icon in the toolbar and choose **Transform to → Mega Menu**. The link keeps its text and address.
 
@@ -44,6 +44,7 @@ You can also watch them from **Appearance → Mega Menus**.
 
 * Mega Menu item for the Navigation block
 * Panels designed in the Site Editor with any blocks
+* 5 ready-made panel designs: links in columns, shop with a featured photo, services with a call to action, latest posts, promo
 * Appearance → Mega Menus: all panels in one list, create a panel in one click, a short how-to
 * Turn any menu link into a mega menu (and back) with Transform, keeping its text and link
 * Open on hover or on click
@@ -70,6 +71,15 @@ The Appearance → Mega Menus page has two video guides hosted on YouTube. Nothi
 = Libraries =
 
 The plugin does not bundle any third-party library. Its scripts use only the packages that come with WordPress (`@wordpress/blocks`, `@wordpress/block-editor`, `@wordpress/components` and others), loaded from WordPress itself. The settings panel helpers in `src/vendor/softicon-tools` are our own code, released under the same GPLv3 or later license as the plugin. All icons were drawn for this plugin.
+
+= Images =
+
+The two photos in the panel designs come from the Twenty Twenty-Five theme and are in the public domain (CC0):
+
+* Botany flowers, https://www.rawpixel.com/image/8812207 (assets/images/botany-flowers.webp)
+* Northern Buttercups, https://www.rawpixel.com/image/8802603 (assets/images/northern-buttercups.webp)
+
+A panel made from a design links to these photos inside the plugin folder. Replace them with your own images.
 
 == Installation ==
 
@@ -113,8 +123,15 @@ Ask in the [support forum](https://wordpress.org/support/plugin/softicon-mega-me
 2. Panel settings in the block editor
 3. Width, position and style settings
 4. The panel inside the phone menu
+5. Ready-made designs to start a new panel from
 
 == Changelog ==
+
+= 1.2.0 =
+* New: 5 ready-made panel designs (links in columns, shop, services, latest posts, promo). Pick one when you create a panel on the Mega Menus page or in the block settings. They are also in the Site Editor under Patterns → Mega Menu.
+* Changed: a new panel's links are no longer underlined and its column headings are small, bold and uppercase, so they stand out from the links.
+* Fixed: the panel preview in the editor now shows widths, gaps, grids and link styles the way the site does. Before, a group with its own width was squeezed to the theme's content width.
+* Changed: Mega Menu is now in the short block list of the Navigation block (+ → Add block), right after Page link and Custom Link. Before, it was only in Browse all.
 
 = 1.1.1 =
 * Changed: "Create panel" on the Appearance → Mega Menus page no longer redirects on the server. The page creates the panel and opens it in the Site Editor, or shows a link to it when JavaScript is off.

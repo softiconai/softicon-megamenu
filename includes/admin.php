@@ -45,8 +45,18 @@ class admin {
             .almm-admin .card { max-width: 820px; }
             .almm-admin .almm-steps { margin: 0 0 4px 18px; }
             .almm-admin .almm-steps li { margin-bottom: 6px; }
-            .almm-admin .almm-create { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+            .almm-admin .almm-create { max-width: 820px; margin: 12px 0 16px; }
+            .almm-admin .almm-create-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
             .almm-admin .almm-create input[type=text] { width: 280px; max-width: 100%; }
+            .almm-admin .almm-designs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; border: 0; }
+            .almm-admin .almm-design { position: relative; display: block; padding: 10px; border: 1px solid #dcdcde; border-radius: 8px; background: #fff; cursor: pointer; }
+            .almm-admin .almm-design:hover { border-color: #8c8f94; }
+            .almm-admin .almm-design input { position: absolute; opacity: 0; }
+            .almm-admin .almm-design svg { display: block; width: 100%; height: auto; margin-bottom: 8px; border-radius: 4px; background: #f6f7f7; }
+            .almm-admin .almm-design strong { display: block; }
+            .almm-admin .almm-design small { display: block; color: #646970; line-height: 1.4; }
+            .almm-admin .almm-design:has(input:checked) { border-color: #4f46e5; box-shadow: 0 0 0 1px #4f46e5; background: #f5f3ff; }
+            .almm-admin .almm-design:has(input:focus-visible) { outline: 2px solid #4f46e5; outline-offset: 2px; }
             .almm-admin .almm-panels { max-width: 820px; }
             .almm-admin .almm-panels code { font-size: 12px; }
             .almm-admin .almm-panels + .description { margin-top: 12px; }
@@ -99,6 +109,52 @@ class admin {
         );
     }
 
+    // a small wireframe of a design: rectangles as x, y, width, height and l(ine), d(ark), i(mage) or b(utton)
+    private function thumb( $key ) {
+        $col = function ( $x, $lines = 3 ) {
+            $rects = array( array( $x, 12, 18, 4, 'd' ) );
+            for ( $i = 0; $i < $lines; $i++ ) {
+                $rects[] = array( $x, 22 + $i * 9, 24, 3, 'l' );
+            }
+            return $rects;
+        };
+        switch ( $key ) {
+            case 'shop':
+                $rects = array_merge( $col( 8 ), $col( 30 ), $col( 52 ), array( array( 80, 10, 32, 24, 'i' ), array( 80, 38, 26, 4, 'd' ), array( 80, 46, 30, 3, 'l' ), array( 80, 54, 16, 6, 'b' ) ) );
+                break;
+            case 'services':
+                $rects = array( array( 80, 10, 32, 52, 'd' ), array( 86, 18, 20, 4, 'l' ), array( 86, 48, 16, 6, 'l' ) );
+                foreach ( array( 8, 42 ) as $x ) {
+                    for ( $i = 0; $i < 3; $i++ ) {
+                        $rects[] = array( $x, 12 + $i * 17, 18, 4, 'd' );
+                        $rects[] = array( $x, 19 + $i * 17, 28, 3, 'l' );
+                    }
+                }
+                break;
+            case 'posts':
+                $rects = array( array( 8, 8, 22, 3, 'd' ) );
+                foreach ( array( 8, 44, 80 ) as $x ) {
+                    $rects[] = array( $x, 16, 32, 20, 'i' );
+                    $rects[] = array( $x, 41, 14, 3, 'l' );
+                    $rects[] = array( $x, 48, 30, 4, 'd' );
+                    $rects[] = array( $x, 55, 22, 4, 'd' );
+                }
+                break;
+            case 'promo':
+                $rects = array( array( 8, 16, 18, 3, 'l' ), array( 8, 24, 46, 6, 'd' ), array( 8, 33, 34, 6, 'd' ), array( 8, 44, 40, 3, 'l' ), array( 8, 53, 16, 7, 'b' ), array( 28, 53, 16, 7, 'l' ), array( 62, 12, 50, 48, 'i' ) );
+                break;
+            default:
+                $rects = array_merge( $col( 8 ), $col( 46 ), $col( 84 ) );
+        }
+
+        $fills = array( 'l' => '#c3c4c7', 'd' => '#50575e', 'i' => '#c7d2fe', 'b' => '#4f46e5' );
+        echo '<svg viewBox="0 0 120 72" aria-hidden="true" focusable="false">';
+        foreach ( $rects as $r ) {
+            printf( '<rect x="%d" y="%d" width="%d" height="%d" rx="1.5" fill="%s"/>', (int) $r[0], (int) $r[1], (int) $r[2], (int) $r[3], esc_attr( $fills[ $r[4] ] ) );
+        }
+        echo '</svg>';
+    }
+
     // the "Create panel" form posts back to this page; the new panel then opens in the Site Editor (see admin.js)
     public function create() {
         if ( ! isset( $_POST['almm_name'] ) ) {
@@ -109,7 +165,8 @@ class admin {
         }
         check_admin_referer( 'almm_create_panel' );
 
-        $title = sanitize_text_field( wp_unslash( $_POST['almm_name'] ) );
+        $title  = sanitize_text_field( wp_unslash( $_POST['almm_name'] ) );
+        $design = isset( $_POST['almm_design'] ) ? sanitize_key( wp_unslash( $_POST['almm_design'] ) ) : '';
         if ( '' === $title ) {
             $title = __( 'Mega menu', 'softicon-mega-menu' );
         }
@@ -119,7 +176,7 @@ class admin {
             'post_status'  => 'publish',
             'post_title'   => $title,
             'post_name'    => sanitize_title( $title ),
-            'post_content' => block::starter(),
+            'post_content' => patterns::content( $design ),
         ), true );
         if ( is_wp_error( $id ) ) {
             wp_die( esc_html( $id->get_error_message() ) );
@@ -158,8 +215,8 @@ class admin {
                 <div class="card">
                     <h2 class="title"><?php esc_html_e( 'How to add a mega menu', 'softicon-mega-menu' ); ?></h2>
                     <ol class="almm-steps">
-                        <li><?php esc_html_e( 'Create a panel below and design it with any blocks: columns of links, images, buttons.', 'softicon-mega-menu' ); ?></li>
-                        <li><?php esc_html_e( 'Click "Open header editor", select the Navigation block, click its + and add a Mega Menu item.', 'softicon-mega-menu' ); ?></li>
+                        <li><?php esc_html_e( 'Pick a design below and create a panel. Change its text, links and images, or design it with any blocks.', 'softicon-mega-menu' ); ?></li>
+                        <li><?php esc_html_e( 'Click "Open header editor", select the Navigation block, click its +, then "Add block", and choose Mega Menu.', 'softicon-mega-menu' ); ?></li>
                         <li><?php esc_html_e( 'Type the item\'s text, choose the panel in the block settings on the right and save.', 'softicon-mega-menu' ); ?></li>
                     </ol>
 
@@ -185,9 +242,22 @@ class admin {
 
                 <form class="almm-create" method="post" action="<?php echo esc_url( self::url() ); ?>">
                     <?php wp_nonce_field( 'almm_create_panel' ); ?>
-                    <label class="screen-reader-text" for="almm-name"><?php esc_html_e( 'Panel name', 'softicon-mega-menu' ); ?></label>
-                    <input type="text" id="almm-name" name="almm_name" placeholder="<?php esc_attr_e( 'For example: Shop menu', 'softicon-mega-menu' ); ?>">
-                    <?php submit_button( __( 'Create panel', 'softicon-mega-menu' ), 'primary', 'submit', false ); ?>
+                    <fieldset class="almm-designs">
+                        <legend class="screen-reader-text"><?php esc_html_e( 'Design', 'softicon-mega-menu' ); ?></legend>
+                        <?php foreach ( patterns::designs() as $key => $design ) : ?>
+                            <label class="almm-design">
+                                <input type="radio" name="almm_design" value="<?php echo esc_attr( $key ); ?>" <?php checked( 'links', $key ); ?>>
+                                <?php $this->thumb( $key ); ?>
+                                <strong><?php echo esc_html( $design['title'] ); ?></strong>
+                                <small><?php echo esc_html( $design['text'] ); ?></small>
+                            </label>
+                        <?php endforeach; ?>
+                    </fieldset>
+                    <div class="almm-create-row">
+                        <label class="screen-reader-text" for="almm-name"><?php esc_html_e( 'Panel name', 'softicon-mega-menu' ); ?></label>
+                        <input type="text" id="almm-name" name="almm_name" placeholder="<?php esc_attr_e( 'For example: Shop menu', 'softicon-mega-menu' ); ?>">
+                        <?php submit_button( __( 'Create panel', 'softicon-mega-menu' ), 'primary', 'submit', false ); ?>
+                    </div>
                 </form>
 
                 <table class="wp-list-table widefat striped almm-panels">

@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { resolveSelect, useDispatch, useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { store as noticesStore } from '@wordpress/notices';
 import { URLInput } from '@wordpress/block-editor';
@@ -12,10 +12,18 @@ import { helpCards, mobileOptions, openOptions } from '../../../../utils/options
 import { almmData, uniqueSlug } from '../../../../utils/functions';
 
 const PARTS = ['postType', 'wp_template_part', { per_page: -1 }];
+const designs = Object.entries(almmData.designs || {}).map(([value, label]) => ({ value, label }));
+
+// a ready-made design's blocks (includes/patterns.php), the starter when it can't be found
+const designContent = async design => {
+	const patterns = await resolveSelect(coreStore).getBlockPatterns?.();
+	return patterns?.find(pattern => pattern.name === `${almmData.pattern}${design}`)?.content || almmData.starter || '';
+};
 
 // choose, create and edit the template part shown in the panel
 const PanelPicker = ({ menuSlug, setAttributes }) => {
 	const [name, setName] = useState('');
+	const [design, setDesign] = useState('links');
 	const [busy, setBusy] = useState(false);
 	const { saveEntityRecord } = useDispatch(coreStore);
 	const { createErrorNotice } = useDispatch(noticesStore);
@@ -53,7 +61,8 @@ const PanelPicker = ({ menuSlug, setAttributes }) => {
 		const slug = uniqueSlug(cleanForSlug(title), (parts || []).map(part => part.slug));
 		setBusy(true);
 		try {
-			const record = await saveEntityRecord('postType', 'wp_template_part', { slug, title, area: 'menu', content: almmData.starter || '' }, { throwOnError: true });
+			const content = await designContent(design);
+			const record = await saveEntityRecord('postType', 'wp_template_part', { slug, title, area: 'menu', content }, { throwOnError: true });
 			setAttributes({ menuSlug: record?.slug || slug });
 			setName('');
 		} catch (e) {
@@ -72,8 +81,9 @@ const PanelPicker = ({ menuSlug, setAttributes }) => {
 		</div>
 
 		<div className='almmCreate'>
-			<FieldHead label={__('New panel', 'softicon-mega-menu')} tip={__('Starts with three columns of links you can change.', 'softicon-mega-menu')} />
+			<FieldHead label={__('New panel', 'softicon-mega-menu')} tip={__('Starts with a ready-made design. Change its text, links and images in the Site Editor.', 'softicon-mega-menu')} />
 			<TextControl label={__('New panel name', 'softicon-mega-menu')} hideLabelFromVision placeholder={__('For example: Shop menu', 'softicon-mega-menu')} value={name} onChange={setName} __nextHasNoMarginBottom __next40pxDefaultSize />
+			{designs.length > 1 && <SelectControl label={__('Design', 'softicon-mega-menu')} value={design} options={designs} onChange={setDesign} __nextHasNoMarginBottom __next40pxDefaultSize />}
 			<Button variant='secondary' onClick={create} isBusy={busy} disabled={busy}>{__('Create panel', 'softicon-mega-menu')}</Button>
 		</div>
 

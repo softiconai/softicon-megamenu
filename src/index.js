@@ -1,4 +1,6 @@
+import { store as blockEditorStore } from '@wordpress/block-editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { dispatch, select, subscribe } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import metadata from './block.json';
 import './style.scss';
@@ -13,6 +15,19 @@ addFilter('blocks.registerBlockType', 'softicon-mega-menu/navigation', (settings
 	}
 	return { ...settings, allowedBlocks: [...settings.allowedBlocks, metadata.name] };
 });
+
+// Navigation "+" → Add block shows only 6 blocks, never-used ones last; listing the mega menu after
+// Page link and Custom link keeps it there. Navigation rewrites this list, so it is checked on every change.
+subscribe(() => {
+	const { getBlocksByName, getBlockListSettings } = select(blockEditorStore);
+	getBlocksByName?.('core/navigation')?.forEach(clientId => {
+		const settings = getBlockListSettings(clientId);
+		const priority = settings?.prioritizedInserterBlocks || [];
+		if (settings && !priority.includes(metadata.name)) {
+			dispatch(blockEditorStore).updateBlockListSettings(clientId, { ...settings, prioritizedInserterBlocks: [...priority, metadata.name] });
+		}
+	});
+}, blockEditorStore);
 
 // a link's label is rich text (an object since WordPress 6.5), the mega menu keeps it as HTML
 const html = value => ('string' === typeof value ? value : value?.toHTMLString?.() ?? String(value ?? ''));

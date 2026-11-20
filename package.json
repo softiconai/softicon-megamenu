@@ -1,6 +1,6 @@
 {
 	"name": "softicon-mega-menu",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"description": "Mega menu block for the Navigation block in block themes",
 	"main": "build/index.js",
 	"scripts": {
@@ -16,7 +16,7 @@
 		"i18n-pot": "wp i18n make-pot . languages/softicon-mega-menu.pot --exclude=\"src,node_modules\"",
 		"find-ds": "find . -name '.DS_Store' -not -path './node_modules/*' -delete",
 		"prezip": "[ -d node_modules ] || npm ci --no-audit --no-fund",
-		"zip": "rm -f softicon-mega-menu.zip && printf '→ Building block\\n' && (npm run -s build >/dev/null 2>&1 || npm run build) && printf '→ Translations\\n' && (npm run -s i18n-pot >/dev/null 2>&1 || npm run i18n-pot) && npm run -s find-ds && printf '→ Zipping\\n' && cd .. && zip -rq softicon-mega-menu/softicon-mega-menu.zip softicon-mega-menu/softicon-mega-menu.php softicon-mega-menu/index.php softicon-mega-menu/includes softicon-mega-menu/src softicon-mega-menu/build softicon-mega-menu/languages softicon-mega-menu/readme.txt softicon-mega-menu/package.json softicon-mega-menu/webpack.config.js -x '*/.DS_Store' '*.map'",
+		"zip": "rm -f softicon-mega-menu.zip && printf '→ Building block\\n' && (npm run -s build >/dev/null 2>&1 || npm run build) && printf '→ Translations\\n' && (npm run -s i18n-pot >/dev/null 2>&1 || npm run i18n-pot) && npm run -s find-ds && printf '→ Zipping\\n' && cd .. && zip -rq softicon-mega-menu/softicon-mega-menu.zip softicon-mega-menu/softicon-mega-menu.php softicon-mega-menu/index.php softicon-mega-menu/includes softicon-mega-menu/assets softicon-mega-menu/src softicon-mega-menu/build softicon-mega-menu/languages softicon-mega-menu/readme.txt softicon-mega-menu/package.json softicon-mega-menu/webpack.config.js -x '*/.DS_Store' '*.map'",
 		"postzip": "printf '\\n✔ Zip ready: %s\\n  %s files, %s\\n\\n' \"$PWD/softicon-mega-menu.zip\" \"$(unzip -l softicon-mega-menu.zip | tail -1 | awk '{print $2}')\" \"$(du -h softicon-mega-menu.zip | cut -f1 | tr -d ' ')\"",
 		"bundle": "npm run lint && npm run zip"
 	},

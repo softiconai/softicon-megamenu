@@ -11,37 +11,40 @@ class block {
     {
         add_action('init', array( $this, 'register' ));
         add_filter('default_wp_template_part_areas', array( $this, 'area' ));
+        add_filter('rest_post_dispatch', array( $this, 'preview_styles' ), 10, 3);
+    }
+
+    // the editor's panel preview gets only HTML from the block renderer; layout, gap, grid and link styles go to the
+    // page's <style> instead, so they are added to the preview's HTML here
+    public function preview_styles( $response, $server, $request ) {
+        if ( '/wp/v2/block-renderer/core/template-part' !== $request->get_route() || ! $request->get_param( 'almm_preview' ) || ! $response instanceof \WP_REST_Response || $response->is_error() ) {
+            return $response;
+        }
+        $data = $response->get_data();
+        $css  = wp_style_engine_get_stylesheet_from_context( 'block-supports', array( 'prettify' => false ) );
+        if ( isset( $data['rendered'] ) && $css ) {
+            $data['rendered'] .= '<style>' . wp_strip_all_tags( $css ) . '</style>';
+            $response->set_data( $data );
+        }
+        return $response;
     }
 
     public function register() {
         register_block_type( ALMM_PLUGIN_PATH . 'build' );
 
-        // what a new panel starts with and the Mega Menus screen, for the block settings
+        // what a new panel starts with, the designs to choose from and the Mega Menus screen, for the block settings
         $data = 'window.almmData = ' . wp_json_encode( array(
             'starter'   => self::starter(),
+            'designs'   => array_map( function ( $design ) { return $design['title']; }, patterns::designs() ),
+            'pattern'   => patterns::CATEGORY . '/',
             'panelsUrl' => admin_url( 'themes.php?page=softicon-mega-menu' ),
         ) ) . ';';
         wp_add_inline_script( generate_block_asset_handle( 'softicon/mega-menu', 'editorScript' ), $data, 'before' );
     }
 
-    // three columns of links, so a new panel shows something to edit
+    // what a new panel starts with: the "Links in columns" design
     public static function starter() {
-        $columns = array(
-            array( __( 'Shop', 'softicon-mega-menu' ), __( 'New arrivals', 'softicon-mega-menu' ), __( 'Best sellers', 'softicon-mega-menu' ), __( 'Sale', 'softicon-mega-menu' ) ),
-            array( __( 'Company', 'softicon-mega-menu' ), __( 'About us', 'softicon-mega-menu' ), __( 'Careers', 'softicon-mega-menu' ), __( 'Contact', 'softicon-mega-menu' ) ),
-            array( __( 'Help', 'softicon-mega-menu' ), __( 'Shipping', 'softicon-mega-menu' ), __( 'Returns', 'softicon-mega-menu' ), __( 'FAQ', 'softicon-mega-menu' ) ),
-        );
-
-        $html = '';
-        foreach ( $columns as $column ) {
-            $html .= "<!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">" . esc_html( array_shift( $column ) ) . "</h4>\n<!-- /wp:heading -->";
-            foreach ( $column as $link ) {
-                $html .= "\n\n<!-- wp:paragraph -->\n<p><a href=\"#\">" . esc_html( $link ) . "</a></p>\n<!-- /wp:paragraph -->";
-            }
-            $html .= "</div>\n<!-- /wp:column -->\n\n";
-        }
-
-        return "<!-- wp:columns -->\n<div class=\"wp-block-columns\">" . rtrim( $html ) . "</div>\n<!-- /wp:columns -->";
+        return patterns::content( 'links' );
     }
 
     // the Site Editor opened on one template part, id is "theme//slug"
