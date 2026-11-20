@@ -31,29 +31,6 @@ class block {
 
     public function register() {
         register_block_type( ALMM_PLUGIN_PATH . 'build' );
-
-        // what a new panel starts with, the designs to choose from and the Mega Menus screen, for the block settings
-        $data = 'window.almmData = ' . wp_json_encode( array(
-            'starter'   => self::starter(),
-            'designs'   => array_map( function ( $design ) { return $design['title']; }, patterns::designs() ),
-            'pattern'   => patterns::CATEGORY . '/',
-            'panelsUrl' => admin_url( 'themes.php?page=softicon-mega-menu' ),
-        ) ) . ';';
-        wp_add_inline_script( generate_block_asset_handle( 'softicon/mega-menu', 'editorScript' ), $data, 'before' );
-    }
-
-    // what a new panel starts with: the "Links in columns" design
-    public static function starter() {
-        return patterns::content( 'links' );
-    }
-
-    // the Site Editor opened on one template part, id is "theme//slug"
-    public static function edit_url( $id ) {
-        return add_query_arg( array(
-            'postType' => 'wp_template_part',
-            'postId'   => rawurlencode( $id ),
-            'canvas'   => 'edit',
-        ), admin_url( 'site-editor.php' ) );
     }
 
     // a "Mega Menu" area in the Site Editor for the panels; the same "menu" area other mega menu plugins use is kept, not added twice

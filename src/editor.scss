@@ -7,6 +7,16 @@
 	font-size: 12px;
 }
 
+// how to add a mega menu, in the Help panel
+.almmSteps {
+	margin: 0 0 12px 18px;
+	font-size: 12px;
+
+	li {
+		margin-bottom: 6px;
+	}
+}
+
 // name field and button kept close together
 .almmCreate {
 	display: flex;

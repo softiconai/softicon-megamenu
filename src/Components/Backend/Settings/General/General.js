@@ -9,33 +9,33 @@ import { addQueryArgs, cleanForSlug } from '@wordpress/url';
 import { decodeEntities } from '@wordpress/html-entities';
 import { FieldHead, HelpCards, Panel, Tiles } from '../../../../vendor/softicon-tools/components/Panels';
 import { helpCards, mobileOptions, openOptions } from '../../../../utils/options';
-import { almmData, uniqueSlug } from '../../../../utils/functions';
+import { uniqueSlug } from '../../../../utils/functions';
 
 const PARTS = ['postType', 'wp_template_part', { per_page: -1 }];
-const designs = Object.entries(almmData.designs || {}).map(([value, label]) => ({ value, label }));
+// the ready-made designs are block patterns in this category (includes/patterns.php)
+const CATEGORY = 'softicon-mega-menu';
 
-// a ready-made design's blocks (includes/patterns.php), the starter when it can't be found
-const designContent = async design => {
-	const patterns = await resolveSelect(coreStore).getBlockPatterns?.();
-	return patterns?.find(pattern => pattern.name === `${almmData.pattern}${design}`)?.content || almmData.starter || '';
-};
+// a ready-made design's blocks, waiting for the patterns when they haven't loaded yet
+const designContent = async name => (await resolveSelect(coreStore).getBlockPatterns?.())?.find(pattern => pattern.name === name)?.content || '';
 
 // choose, create and edit the template part shown in the panel
 const PanelPicker = ({ menuSlug, setAttributes }) => {
 	const [name, setName] = useState('');
-	const [design, setDesign] = useState('links');
+	const [design, setDesign] = useState(`${CATEGORY}/links`);
 	const [busy, setBusy] = useState(false);
 	const { saveEntityRecord } = useDispatch(coreStore);
 	const { createErrorNotice } = useDispatch(noticesStore);
 
-	const { parts, resolved, theme } = useSelect(select => {
+	const { parts, resolved, theme, patterns } = useSelect(select => {
 		const core = select(coreStore);
 		return {
 			parts: core.getEntityRecords(...PARTS),
 			resolved: core.hasFinishedResolution('getEntityRecords', PARTS),
-			theme: core.getCurrentTheme()
+			theme: core.getCurrentTheme(),
+			patterns: core.getBlockPatterns?.()
 		};
 	}, []);
+	const designs = (patterns || []).filter(pattern => pattern.categories?.includes(CATEGORY)).map(pattern => ({ value: pattern.name, label: pattern.title }));
 
 	if (theme && false === theme.is_block_theme) {
 		return <Notice status='warning' isDismissible={false}>
@@ -87,7 +87,7 @@ const PanelPicker = ({ menuSlug, setAttributes }) => {
 			<Button variant='secondary' onClick={create} isBusy={busy} disabled={busy}>{__('Create panel', 'softicon-mega-menu')}</Button>
 		</div>
 
-		{almmData.panelsUrl && <p className='almmHelp'><ExternalLink href={almmData.panelsUrl}>{__('All panels (Appearance → Mega Menus)', 'softicon-mega-menu')}</ExternalLink></p>}
+		<p className='almmHelp'>{__('To rename or delete a panel, go to Appearance → Editor → Patterns → Mega Menu.', 'softicon-mega-menu')}</p>
 	</>;
 };
 
@@ -97,6 +97,11 @@ const General = ({ attributes, setAttributes }) => {
 
 	return <>
 		<Panel id='help' title={__('Help', 'softicon-mega-menu')}>
+			<ol className='almmSteps'>
+				<li>{__('Under Panel, pick a design and click "Create panel".', 'softicon-mega-menu')}</li>
+				<li>{__('Click "Edit this panel in the Site Editor". Change its text, links and images, or design it with any blocks.', 'softicon-mega-menu')}</li>
+				<li>{__('Back here, type the menu item\'s text and save.', 'softicon-mega-menu')}</li>
+			</ol>
 			<HelpCards cards={helpCards} />
 			<p className='almmHelp'>{__('Email:', 'softicon-mega-menu')} <a href='mailto:softiconai@gmail.com'>softiconai@gmail.com</a></p>
 		</Panel>

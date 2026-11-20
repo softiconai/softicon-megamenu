@@ -1,6 +1,3 @@
-// from includes/block.php: what a new panel starts with and the Mega Menus screen
-export const almmData = window.almmData || {};
-
 const widths = {
 	content: 'var(--wp--style--global--content-size, 800px)',
 	wide: 'var(--wp--style--global--wide-size, 1200px)',

@@ -4,7 +4,7 @@ Tags: mega menu, menu, navigation, block, block theme
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,11 +18,12 @@ Classic mega menu plugins work with the old Appearance → Menus screen, which b
 
 = How it works =
 
-1. Go to **Appearance → Mega Menus**, pick a design and click **Create panel**. Change its text, links and images, or design it with any blocks.
-2. Click **Open header editor**, select the Navigation block, click its **+**, then **Add block**, and choose **Mega Menu**.
-3. Type the item's text, choose the panel in the block settings and save.
+1. Open your header in **Appearance → Editor**, select the Navigation block, click its **+**, then **Add block**, and choose **Mega Menu**.
+2. In the block settings, under **Panel**, pick a design and click **Create panel**.
+3. Click **Edit this panel in the Site Editor** and change its text, links and images, or design it with any blocks.
+4. Back in the header, type the item's text and save.
 
-You can also create a panel right from the block settings, or add a design to any panel from the Site Editor: Inserter → Patterns → **Mega Menu**.
+You can also add a design to any panel from the Site Editor: Inserter → Patterns → **Mega Menu**.
 
 Already have a menu? Select a link in it, click the first icon in the toolbar and choose **Transform to → Mega Menu**. The link keeps its text and address.
 
@@ -38,14 +39,14 @@ A quick tour (0:32):
 
 https://www.youtube.com/watch?v=dujCbVTPBlQ
 
-You can also watch them from **Appearance → Mega Menus**.
+The Help panel in the block settings links to the step-by-step guide.
 
 = Features =
 
 * Mega Menu item for the Navigation block
 * Panels designed in the Site Editor with any blocks
 * 5 ready-made panel designs: links in columns, shop with a featured photo, services with a call to action, latest posts, promo
-* Appearance → Mega Menus: all panels in one list, create a panel in one click, a short how-to
+* Create, choose and edit panels right from the block settings, with a short how-to in the Help panel
 * Turn any menu link into a mega menu (and back) with Transform, keeping its text and link
 * Open on hover or on click
 * Panel width: content, wide, full screen or a custom width
@@ -58,7 +59,6 @@ You can also watch them from **Appearance → Mega Menus**.
 * Preview the panel in the editor
 * Works without JavaScript too: the panel opens on hover and keyboard focus
 * Small script with no dependencies, about 2 KB
-* Video guides on the Appearance → Mega Menus page
 
 = Source code =
 
@@ -66,7 +66,7 @@ The JavaScript and CSS in the `build` folder are compiled from the human-readabl
 
 = External services =
 
-The Appearance → Mega Menus page has two video guides hosted on YouTube. Nothing is loaded from YouTube until you click a video. Then the video plays from youtube-nocookie.com, which receives your IP address and browser details like any website you visit. Visitors of your site never load anything from YouTube because of this plugin. YouTube [Terms of Service](https://www.youtube.com/t/terms) and Google [Privacy Policy](https://policies.google.com/privacy).
+The plugin does not connect to any external service. The Help panel in the block settings has plain links to a video guide on YouTube and to WordPress.org, which open in a new tab only when you click them.
 
 = Libraries =
 
@@ -95,7 +95,11 @@ No. Panels are template parts, which need a block theme. Classic themes can use 
 
 = Where do I find my panels? =
 
-**Appearance → Mega Menus** lists them all with an Edit button. They are also in Appearance → Editor → Patterns → **Mega Menu**, and the block settings link to the chosen panel.
+The **Panel** list in the block settings shows them all and links to the chosen one. They are also in Appearance → Editor → Patterns → **Mega Menu**, where you can rename or delete them.
+
+= Where did Appearance → Mega Menus go? =
+
+Version 1.3.0 removed that page, so the plugin is a pure block that can be installed right from the editor. Everything it did is in the block settings: pick a design, create a panel, choose it and open it in the Site Editor. Your panels and menus are not changed.
 
 = Where is Appearance → Menus? =
 
@@ -123,9 +127,14 @@ Ask in the [support forum](https://wordpress.org/support/plugin/softicon-mega-me
 2. Panel settings in the block editor
 3. Width, position and style settings
 4. The panel inside the phone menu
-5. Ready-made designs to start a new panel from
+5. Ready-made designs in the Site Editor: Patterns → Mega Menu, and Design in a panel's settings
 
 == Changelog ==
+
+= 1.3.0 =
+* Removed: the Appearance → Mega Menus page, so the plugin is a pure block that can be listed in the Block Directory and installed from the editor. Everything it did is in the block settings: pick a design, create a panel, choose it and open it in the Site Editor. Panels and menus you made are not changed.
+* New: a short how-to in the block's Help panel.
+* Changed: the block settings get the ready-made designs from the block patterns, so the plugin no longer adds inline data to the editor.
 
 = 1.2.0 =
 * New: 5 ready-made panel designs (links in columns, shop, services, latest posts, promo). Pick one when you create a panel on the Mega Menus page or in the block settings. They are also in the Site Editor under Patterns → Mega Menu.
