@@ -1,10 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
+import { useMergeRefs } from '@wordpress/compose';
 import { store as coreStore } from '@wordpress/core-data';
 import { BlockControls, RichText, useBlockProps } from '@wordpress/block-editor';
 import { ToolbarButton } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+// copied from the shared softicon-tools folder by `npm run tools` (prebuild), edit it there
+import useIframeAssets from '../../vendor/softicon-tools/hooks/useIframeAssets';
 import Settings from './Settings/Settings';
 import place from '../../utils/place';
 import { cssVars } from '../../utils/functions';
@@ -20,13 +23,15 @@ const Edit = (props) => {
 	const [preview, setPreview] = useState(false);
 	const item = useRef();
 	const panel = useRef();
+	// a block installed from the inserter's search gets these only in the top window
+	const assetsRef = useIframeAssets(['softicon-mega-menu-style-css', 'softicon-mega-menu-editor-style-css']);
 	const theme = useSelect(select => select(coreStore).getCurrentTheme()?.stylesheet, []);
 
 	// the panel shows while the item is selected and Preview is on
 	const showPanel = preview && isSelected && !!menuSlug && !!theme;
 
 	const blockProps = useBlockProps({
-		ref: item,
+		ref: useMergeRefs([item, assetsRef]),
 		className: ['wp-block-navigation-item', 'almm_item', 'almm_js', shadow && 'almm_shadow', showPanel && 'is-open'].filter(Boolean).join(' '),
 		style: cssVars(attributes)
 	});
